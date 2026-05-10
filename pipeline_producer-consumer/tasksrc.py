@@ -1,11 +1,12 @@
 import multiprocessing
+# pyrefly: ignore [missing-import]
 import zmq, time, pickle, sys, random
 from constPipe import * #-
 
 def producer(id, port):
 	context = zmq.Context()              
 	socket  = context.socket(zmq.PUSH)        # create a push socket
-	socket.bind("tcp://localhost:"+port)                             # bind socket to address
+	socket.bind("tcp://*:"+port)                                     # bind socket to address
 	
 	for i in range(100):                  # generate 100 workloads
 		workload = random.randint(1, 100)   # compute workload
